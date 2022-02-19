@@ -1,3 +1,4 @@
+#!groovy
 pipeline {
 	agent any
 
@@ -16,8 +17,6 @@ pipeline {
 			parallel {
 				stage('Stage 2 - 21049462') {
 					agent {
-						label "docker-create"
-						reuseNode true
 						docker {
 							image 'apache2-21049462-image'
 							args '-d'
@@ -36,7 +35,6 @@ pipeline {
 				}
 			}
 		}
-		
 
 		stage('Stage 4 - 21049462') {
 			steps {
@@ -46,8 +44,10 @@ pipeline {
 		stage('Stage 5 - 21049462') {
 			when {
 				Proceed
+			}
+			steps {
 				sh 'echo "Work Released - 21049462"'
-			}       
+			}
 		}
 
 	}   
