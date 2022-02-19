@@ -1,25 +1,7 @@
 pipeline {
 
-    agent {
-        node {
-            label 'master'
-        }
-    }
-
     tools { 
         maven 'maven' 
-    }
-
-    options {
-        buildDiscarder logRotator( 
-                    daysToKeepStr: '15', 
-                    numToKeepStr: '10'
-            )
-    }
-
-    environment {
-        APP_NAME = "STUDENT_APP"
-        APP_ENV  = "DEV"
     }
 
     stages {
@@ -47,10 +29,6 @@ pipeline {
 	        	}
         	}
         }
-        
-        	
-        	
-        
 
         stage('Stage 4 - 21049462') {
         	steps {
