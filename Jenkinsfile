@@ -28,24 +28,29 @@ pipeline {
             	sh 'echo "Stage 1 Completed - 21049462"'
             }
         }
-        parallel {
-        	stage('Stage 2 - 21049462') {
-        		agent {
-        			docker {
-        				image 'apache2-21049462-image'
-        				args '-d'
-        			}
-        		}
-        		steps {
-        			sh 'echo "Stage 2 Completed - 21049462"'
-        		}
-        	}
-        	stage('Stage 3 - 21049462') {
-        		steps {
-        			sh 'echo "Stage 3 Completed - 21049462"'
-        		}
+
+        stage('Stage 2 - 21049462') {
+        	parallel {
+	        	agent {
+	        		docker {
+	        			image 'apache2-21049462-image'
+	        			args '-d'
+	        		}
+	        	}
+	        	steps {
+	        		sh 'echo "Stage 2 Completed - 21049462"'
+	        	}
+	        	stage('Stage 3 - 21049462') {
+	        		steps {
+	        			sh 'echo "Stage 3 Completed - 21049462"'
+	        		}
+	        	}
         	}
         }
+        
+        	
+        	
+        
 
         stage('Stage 4 - 21049462') {
         	steps {
