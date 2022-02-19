@@ -16,11 +16,12 @@ pipeline {
         	parallel {
         		stage('Stage 2 - 21049462') {
         			agent {
-        				label "docker-create"
+        				
         				reuseNode true
         				docker {
 	    					image 'apache2-21049462-image'
 	    					args '-d'
+	    					label "docker-create"
 	    				}
         			}
         			steps {
@@ -45,9 +46,7 @@ pipeline {
         }
         stage('Stage 5 - 21049462') {
         	when {
-        		equals {
-        			Proceed
-        		}
+        		Proceed
         		sh 'echo "Work Released - 21049462"'
             }       
         }
