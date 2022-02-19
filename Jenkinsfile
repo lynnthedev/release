@@ -1,7 +1,13 @@
 pipeline {
 
+	agent {
+		node {
+			label 'master'
+		}
+	}
+
     tools { 
-        maven 'maven' 
+        maven 'maven'
     }
 
     stages {
@@ -11,15 +17,21 @@ pipeline {
             }
         }
 
-        stage('Stage 2 - 21049462') {
+        stage('Parallel') {
         	parallel {
-	        	docker {
-	        		image 'apache2-21049462-image'
-	        		args '-d'
-	        	}
-	        	steps {
-	        		sh 'echo "Stage 2 Completed - 21049462"'
-	        	}
+        		stage('Stage 2 - 21049462') {
+        			agent {
+        				label "docker-create"
+        				}
+        				docker {
+        					image 'apache2-21049462-image'
+        					args '-d'
+        				}
+    					steps {
+    						sh 'echo "Stage 2 Completed - 21049462"'
+					}
+				}
+	        	
 	        	stage('Stage 3 - 21049462') {
 	        		steps {
 	        			sh 'echo "Stage 3 Completed - 21049462"'
@@ -27,6 +39,7 @@ pipeline {
 	        	}
         	}
         }
+        
 
         stage('Stage 4 - 21049462') {
         	steps {
