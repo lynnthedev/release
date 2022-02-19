@@ -1,6 +1,5 @@
 pipeline {
-	agent any
-
+	agent none
     tools { 
         maven 'maven'
     }
