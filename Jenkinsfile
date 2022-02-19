@@ -42,9 +42,6 @@ pipeline {
 			}
 		}
 		stage('Stage 5 - 21049462') {
-			when {
-				Proceed
-			}
 			steps {
 				sh 'echo "Work Released - 21049462"'
 			}
