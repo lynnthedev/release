@@ -13,11 +13,9 @@ pipeline {
 
         stage('Stage 2 - 21049462') {
         	parallel {
-	        	agent {
-	        		docker {
-	        			image 'apache2-21049462-image'
-	        			args '-d'
-	        		}
+	        	docker {
+	        		image 'apache2-21049462-image'
+	        		args '-d'
 	        	}
 	        	steps {
 	        		sh 'echo "Stage 2 Completed - 21049462"'
